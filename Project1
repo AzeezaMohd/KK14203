@@ -1,0 +1,598 @@
+/* GROUP MEMBERS :
+SYAHIRAH AQILAH BINTI SULAIMAN (BI19110068)
+SITI AZEEZA BINTI MOHAMMAD (BI19110030)
+NUR FARAHIN BINTI JAMIRIN (BI19110107)
+NURSYAFIQAH IZANI BINTI MOHD ZAIN (BI19110120)
+NUR ASYIDATUL BINTI ASINDI (BI19110052)
+*/
+
+import java.util.*;
+import java.util.Scanner;
+import java.text.DecimalFormat;
+import java.util.Random;
+
+class Menu
+{
+   String custName;
+ 
+   String getcustName()
+   { 
+  
+      System.out.print("Please enter your name : ");
+      Scanner input_custName = new Scanner(System.in);
+      String Name = input_custName.nextLine();
+       
+      
+      
+      System.out.println("\nWelcome to Purr cafe, " + Name + "!");
+      System.out.println("Please choose your status");
+      return Name;
+    }
+      
+           
+      //display menu list
+      public void ListMenu()
+      {
+         System.out.println("\n\nThis is the Menu list.\n");
+         System.out.println("List Menu\n\nFood\t\t\t\t\t\t\t\tPrice\n");
+         System.out.println("[101]Burger\t\t\t\t\t\tRM2.50\n[102]Spaghetti\t\t\t\t\tRM5.00\n[103]Fried Chicken\t\t\tRM3.00\n");
+         System.out.println("Soft drinks\t\t\t\t\t\tPrice\n\n[201]Cola\t\t\t\t\t\tRM2.00\n[202]Pepsi\t\t\t\t\t\tRM2.00\n[203]Sprite\t\t\t\t\t\tRM2.00\n");
+         System.out.println("Hot drinks\t\t\t\t\t\tPrice\n\n[301]Tea\t\t\t\t\t\t\tRM1.80\n[302]Coffee\t\t\t\t\t\tRM1.80\n");   
+             
+       }   
+}
+  
+class status{
+    double temp;
+    int nooftable; //dine in
+    String addr;
+    char fon; // delivery
+    int turn;//take away
+   
+   status(){
+        double a=temp;
+        int b=nooftable;
+        String  c= addr;
+        int f=turn;
+       }
+    double gettemp(){
+       Scanner ae=new Scanner(System.in);
+       double a=ae.nextDouble();
+       return a;
+      }
+   int getnooftable(){
+   Random tble = new Random();
+        int b= tble.nextInt(9);
+       return b;
+      
+      }
+    String getaddr(){
+        Scanner ae=new Scanner(System.in);
+         String c=ae.nextLine();
+        return c; 
+      }
+   int getfon(){
+       Scanner ae=new Scanner(System.in);
+        while(!ae.hasNextInt()){
+               String input = ae.next();
+               System.out.print("This is not a phone number");
+              }
+   
+       int d=ae.nextInt();
+       return d; 
+      } 
+    int getturn(){
+       Random trn = new Random();
+        int f = trn.nextInt(9);
+       return f;
+    }
+}
+
+class Order{
+   private String item;
+   private double price;
+   
+  Order(String i, double p){
+      item = i;
+      price = p; 
+     }
+    
+   String getItem(){
+      return item;
+   }
+   
+   double getPrice(){
+      return price;
+   }
+ 
+   void setItem(String item){
+        this.item = item; 
+   }
+   
+   void setPrice(double price){
+      this.price = price; 
+   }
+
+   
+   double calcPrice(int quantity){
+      return ((double)(price*quantity));   
+   }
+       
+   
+   
+    String getMenuItem(){
+       DecimalFormat df = new DecimalFormat("0.00");
+       return (item + " RM" + String.format("%.2f",price)); 
+   }
+    
+}
+
+class payment1
+{
+  private static DecimalFormat df2 = new DecimalFormat("#.##");
+  private int choice ;
+  private double subtotal , total , money ;
+ 
+     String checkUserChoice(int _UserChoice)
+     {
+     String _PaymentType="";
+	  if(_UserChoice == 1)
+	   {
+		  _PaymentType = "Cash";
+	    }
+       else if(_UserChoice == 2)
+	   {
+		  _PaymentType = "Credit/Debit Card";
+         System.out.println("Set up your credit or debit card");
+        System.out.print("First Name: ");
+        Scanner input_fn = new Scanner(System.in);
+        String fn  = input_fn.nextLine();
+       System.out.print("Last Name: ");
+        Scanner input_ln = new Scanner(System.in);
+        String ln  = input_ln.nextLine();
+        System.out.print("Card Number: ");
+        Scanner input_card = new Scanner (System.in);
+        int card = input_card.nextInt();
+        System.out.print("Expiration Date:");
+        System.out.print("\nMonth: ");
+        Scanner mnth = new Scanner (System.in);
+        int month = mnth.nextInt();
+        System.out.print("Year: ");
+        Scanner year = new Scanner (System.in);
+        int yr = year.nextInt();
+        System.out.print("Security code (CVV) : ");
+        Scanner security = new Scanner(System.in);
+        String cvv = security.nextLine();
+        System.out.print("succesfull");
+        }
+       
+     
+	  return _PaymentType;
+     }
+     }
+
+
+class Feedback
+{     
+      int rate;
+      int comment;
+      
+      int getrate(){
+   
+      System.out.print("Please give some feedback by giving a rate from 1 to 5\n");
+      Scanner input_rate = new Scanner(System.in);
+      int rate = input_rate.nextInt();
+      
+      switch (rate)
+      {
+         case 1:
+         case 2:
+         case 3:
+         System.out.println("We will try our best to improve our service, thank you");
+         break;
+         
+         case 4:
+         case 5:
+         System.out.println("Thank you!");
+         break;
+         
+         default:
+         System.out.println("Unrecognized");
+       }
+       return rate;
+      }
+      
+      int getcomment()
+      {
+         System.out.println("Would you like to give some comment?\n(Press 0 to proceed and 9 to cancel): ");
+         Scanner input_choice = new Scanner(System.in);
+         int choose = input_choice.nextInt();
+     
+         switch (choose)
+         {
+            case 0:
+            System.out.println("Comment: ");
+            Scanner input_comment = new Scanner(System.in);
+            String str = input_comment.nextLine();
+            break;
+         
+            case 9:
+            break;
+         
+            default:
+            break;
+         }
+      
+      System.out.println("Thank you for the feedback!Please come again. Have a good day and stay safe.");
+      return comment;
+   }
+
+}
+
+
+//main class
+public class OrderingRecordS{
+   private static DecimalFormat df2 = new DecimalFormat("#.##");
+   
+   public static void main(String[] args)
+   {
+   
+      Menu display = new Menu();
+      
+      display.getcustName();
+      
+      status st=new status();
+      Scanner sc=new Scanner(System.in);
+    
+      String address;
+   
+      int choice;
+      int turn;
+    
+    
+    System.out.println("------------------------------------------------------------------------------------------------------------");
+    System.out.println("                                        1.Dine in                                                       ");
+    System.out.println("                                        2.Delivery                                                          ");
+    System.out.println("                                        3.Take away                                                        ");
+    System.out.println("------------------------------------------------------------------------------------------------------------");
+    
+  
+      System.out.println("Add choice: ");
+      choice=sc.nextInt();
+    if(choice==1){
+               System.out.println("You choose to Dine in");
+               
+               System.out.println("Temperature:" );
+               double temperature = st.gettemp();
+               if (temperature >= 36.5 && temperature <= 37.5) {
+                  System.out.println("Your body temperature is normal. You can dine inside the restaurant.");
+               } else if (temperature > 37.5) {
+                  System.out.println("You have a fever. You cannot dine inside the restaurant.");
+               } else if (temperature < 35.0) {
+                  System.out.println("You are hypothermia.");
+               }  
+
+               System.out.print("No Of Table: ");
+                for(int i=0; i<2;i++)
+               {
+              System.out.print(st.getnooftable()+ "");
+              }
+               
+               }  
+      else if(choice==2){
+               System.out.println("You choose to delivery");
+               
+               System.out.println("Address:" );
+               st.getaddr();
+               address=sc.nextLine();
+              
+               System.out.println("Phone number:");
+               st.getfon();
+              }
+            
+      else if (choice==3){
+               System.out.println("You choose to take away");
+               
+               System.out.print("Please patiently wait for your turn : ");
+               for(int i=0; i<4;i++)
+               {
+              System.out.print(st.getturn() + "");
+              }
+              
+               }
+        else {
+        while (choice != 1 && choice !=2 && choice !=3){
+          System.out.print("Please choose the option provided only : " );
+           System.out.print("\nAdd choice: ");
+           choice=sc.nextInt();
+            if(choice==1){
+               System.out.println("You choose to Dine in");
+               
+               System.out.println("Temperature:" );
+               double temperature = st.gettemp();
+               if (temperature >= 36.5 && temperature <= 37.5) {
+                  System.out.println("Your body temperature is normal. You can dine inside the restaurant.");
+               } else if (temperature > 37.5) {
+                  System.out.println("You have a fever. You cannot dine inside the restaurant.");
+               } else if (temperature < 35.0) {
+                  System.out.println("You are hypothermia.");
+               }  
+
+               System.out.print("No Of Table: ");
+                for(int i=0; i<2;i++)
+               {
+              System.out.print(st.getnooftable()+ "");
+              }
+               
+               }  
+      else if(choice==2){
+               System.out.println("You choose to delivery");
+               
+               System.out.println("Address:" );
+               st.getaddr();
+               address=sc.nextLine();
+              
+               System.out.println("Phone number:");
+               st.getfon();
+              }
+            
+      else if (choice==3){
+               System.out.println("You choose to take away");
+               
+               System.out.print("Please patiently wait for your turn : ");
+               for(int i=0; i<4;i++)
+               {
+              System.out.print(st.getturn() + "");
+              }
+           
+      } 
+      }
+      }
+               
+              
+      
+      
+      display.ListMenu(); 
+      
+      
+      int choiceOrder;
+      int qty;
+      double total=0.0, tax=0.05, subtotal;
+
+      
+      Scanner order = new Scanner(System.in);
+    
+      Order[] menu = new Order[8];
+      menu [0] = new Order("Burger", 2.50);
+      menu [1] = new Order("Spaghetti", 5.00);
+      menu [2] = new Order("Fried Chicken", 3.00);
+      menu [3] = new Order ("Cola", 2.00);
+      menu [4] = new Order ("Pepsi",2.00);
+      menu [5] = new Order ("Sprite",2.00);
+      menu [6] = new Order ("Tea",1.80);
+      menu [7] = new Order ("Coffee",1.80);
+      
+     
+  do { 
+        do {
+            System.out.print("\nType the code of your desired menu and press 0 if you have finished order:  ");
+            while (!order.hasNextInt()) {                                                      //to ensure the use to key in the right code for their choice of menu
+                String input = order.next();
+                System.out.printf("Make sure your code is all numbers : ", input);
+            }
+            choiceOrder = order.nextInt();
+            
+        } while (choice< 0);
+        
+       
+  if (choiceOrder == 101) {
+           do {
+            System.out.println("You chose : " + menu[0].getItem());
+            System.out.print("How many do you want? : ");
+            while (!order.hasNextInt()) {
+                String input = order.next();
+                System.out.printf("\"%s\" is not a valid number. Enter a valid one : ", input);
+            }
+            qty = order.nextInt();
+             } while (qty < 0);
+            
+            total += (menu[0].calcPrice(qty));
+            System.out.printf("\tPrice: RM %.2f", menu[0].calcPrice(qty));
+            
+            }
+            
+   else if(choiceOrder == 102) {
+            do {
+            System.out.println("You chose : " + menu[1].getItem() );
+            System.out.print("How many do you want? : ");
+            while (!order.hasNextInt()) {
+                String input = order.next();
+                System.out.printf("\"%s\" is not a valid number. Enter a valid one : ", input);
+            }
+            qty = order.nextInt();
+             } while (qty < 0);
+            
+           total += (menu[1].calcPrice(qty));
+           System.out.printf("\tPrice: RM %.2f",menu[1].calcPrice(qty));
+            
+            }
+               
+   else if(choiceOrder== 103){
+          do {
+            System.out.println("You chose : " + menu[2].getItem());
+            System.out.print("How many do you want? : ");
+            while (!order.hasNextInt()) {
+                String input = order.next();
+                System.out.printf("\"%s\" is not a valid number, Enter a valid one : ", input);
+            }
+            qty = order.nextInt();
+             } while (qty < 0);
+               total += (menu[2].calcPrice(qty));
+               System.out.printf("\tPrice: RM %.2f",menu[2].calcPrice(qty));
+            }
+               
+   else if (choiceOrder ==201){
+           do {
+            System.out.println("You chose : " + menu[3].getItem());
+            System.out.print("How many do you want? : ");
+            while (!order.hasNextInt()) {
+                String input = order.next();
+                System.out.printf("\"%s\" is not a valid number. Enter a valid one : ", input);
+            }
+            qty = order.nextInt();
+             } while (qty < 0);
+            total += (menu[3].calcPrice(qty));
+            System.out.printf("\tPrice: RM %.2f", menu[3].calcPrice(qty));
+             }
+             
+           
+   else if (choiceOrder == 202){
+            do {
+            System.out.println("You chose: "+ menu[4].getItem());
+            System.out.print("How many do you want? : ");
+            while (!order.hasNextInt()) {             //to ensure the user only keys in positive numbers only
+                String input = order.next();
+                System.out.printf("\"%s\" is not a valid number, Enter a valid one : ", input);
+            }
+            qty = order.nextInt();
+             } while (qty < 0);
+               total += (menu[4].calcPrice(qty));
+               System.out.printf("\tPrice:  %.2f",menu[4].calcPrice(qty));
+            }
+            
+   else if (choiceOrder == 203){
+            do {
+            System.out.println("You chose: " + menu[5].getItem());
+            System.out.print("How many do you want? : ");
+            while (!order.hasNextInt()) {
+                String input = order.next();
+                System.out.printf("\"%s\" is not a valid number, Enter a valid one : ", input);
+            }
+            qty = order.nextInt();
+             } while (qty < 0);
+            total += (menu[5].calcPrice(qty));
+            System.out.printf("\tPrice: RM %.2f", menu[5].calcPrice(qty));
+            
+            }
+               
+  else if (choiceOrder == 301){
+         do {
+           System.out.println("You chose: " + menu[6].getItem());
+           System.out.print("How many do you want? : ");
+            while (!order.hasNextInt()) {
+                String input = order.next();
+                System.out.printf("\"%s\" is not a valid number, Enter a valid one : ", input);
+            }
+            qty = order.nextInt();
+             } while (qty < 0);
+               total += (menu[6].calcPrice(qty));
+               System.out.printf("\tPrice: RM %.2f",menu[6].calcPrice(qty));
+            }
+          
+              
+  else if (choiceOrder == 302){
+            do {
+            System.out.println("You chose: "+ menu[7].getItem());
+            System.out.print("How many do you want? : ");
+            while (!order.hasNextInt()) {
+                String input = order.next();
+                System.out.printf("\"%s\" is not a valid number, Enter a valid one : ", input);
+            }
+            qty = order.nextInt();
+             } while (qty < 0);
+             total += (menu[7].calcPrice(qty));
+             System.out.printf("\tPrice: RM %.2f",menu[7].calcPrice(qty));
+            
+            }
+               
+   else {
+         if (choiceOrder==0){
+            break;
+            }
+            
+           else {
+            System.out.print("Code is not valid, Enter a new one : ");
+            }
+            }
+        } while (choiceOrder!= 0 );
+        
+       
+      
+      System.out.println("\nThank you for your ordering at Purr Cafe, we wish you a very great day ! <3");
+      System.out.printf("\nTotal: RM %.2f",total);
+      subtotal = (total*tax)+total;
+      System.out.printf("\nSubtotal : RM %.2f", subtotal);
+      
+      if(subtotal>=50)
+      {
+        System.out.print("\nYou have purchase over RM50 ! You'll get a freegift");
+       }
+       
+      else
+      {
+        System.out.println("\nPurchase over RM50 to get a freegift from us!");
+      }
+      
+      
+      
+      System.out.println();
+      payment1 pay = new payment1();
+      Scanner scPay = new Scanner(System.in);
+      String PaymentType = "";
+	   int choicePay ;
+      
+       double subtotalPay, totalPay, userPayment, balance;	
+	    System.out.println("\nPayment method : \n1) Cash\n2) Credit Card/Debit Card\n");
+       System.out.println("Choose your payment method : ");
+       choicePay = scPay.nextInt(); 
+       PaymentType = pay.checkUserChoice(choicePay);
+	    
+       
+       if(choicePay==1)
+       {
+    	 System.out.println("Your  Subtotal Is : RM " + df2.format(subtotal));
+     	 System.out.println("Cash in : " );
+       userPayment = scPay.nextDouble();
+       
+       if(userPayment<subtotal)
+       {
+         System.out.print("\tNot enough cash");
+        }
+        else { 
+       balance = userPayment-subtotal;
+       System.out.println("Balance : RM" + df2.format(balance));
+       } 
+       }  
+       
+       while(choicePay!=1&&choicePay!=2)
+       {
+        System.out.println("Choose your payment method : ");
+       choicePay = scPay.nextInt(); 
+       PaymentType = pay.checkUserChoice(choicePay);
+	    
+       
+       if(choicePay==1)
+       {
+    	 System.out.println("Your  Subtotal Is :" +subtotal);
+     	 System.out.println("Cash in..." );
+       userPayment = scPay.nextDouble();
+       
+       if(userPayment<subtotal)
+       {
+         System.out.print("\tNot enough cash");
+        }
+        else { 
+       balance = userPayment-subtotal;
+       System.out.println("Balance : RM" + df2.format(balance));
+       } 
+       }
+        
+    }
+    
+   
+
+     System.out.println();
+      Feedback fb = new Feedback();
+      fb.getrate();
+}
+}
